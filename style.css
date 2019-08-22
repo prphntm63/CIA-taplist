@@ -1,0 +1,54 @@
+h5 {
+    font-size: 12px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h1 {
+
+}
+
+.brew {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-height: 10%;
+}
+
+.brew-tap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0px;
+    padding: 5px 20px 5px 10px;
+    border-right: 1px solid lightgray;
+}
+
+.brew-description {
+    flex-grow: 1;
+    margin: 5px 0px;
+    padding: 5px 20px;
+    border-right: 1px solid lightgray;
+}
+
+.brew-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.brew-stats > div {
+    text-align: center;
+    margin: 0px;
+    padding: 5px 5px 5px 25px;
+}
+
+.qr-codes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
