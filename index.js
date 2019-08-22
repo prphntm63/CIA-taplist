@@ -12,6 +12,31 @@ function getAndUpdateTapData(sheetURL) {
         let htmlOut = '';
 
         tapObject.forEach(tap => {
+            if (tap.OG.length < 5) {
+                tap.OG += '0'.repeat(5 - tap.OG.length)
+            } else if (tap.OG.length > 5) {
+                tap.OG = tap.OG.slice(0, 5 - tap.OG.length)
+            }
+
+            if (tap.FG.length < 5) {
+                tap.FG += '0'.repeat(5 - tap.FG.length)
+            } else if (tap.FG.length > 5) {
+                tap.FG = tap.FG.slice(0, 5 - tap.FG.length)
+            }
+
+            let abvDecimal = tap.ABV.split('.')
+            if (!abvDecimal[1]) {
+                tap.ABV += '.0'
+            } else if (abvDecimal[1].length > 1) {
+                tap.ABV = tap.ABV.slice(0, 1-abvDecimal[1].length)
+            }
+
+            let srmDecimal = tap.SRM.split('.')
+            tap.SRM = srmDecimal[0]
+
+            let ibuDecimal = tap.IBU.split('.')
+            tap.IBU = ibuDecimal[0]
+
             htmlOut += `
                 <li class="list-group-item brew">
                     <div class="brew-tap">
