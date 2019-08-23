@@ -9,11 +9,14 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <script src="login.js"></script>
-    <title>Login to Change Taps</title>
+    <title>Change Taps</title>
 </head>
 <body>
-    <div class="container ">
-        <h3>Enter Taplist Username and Password to access Taplist</h3>
+    <div class="container">
+            <h3 id="titleBar">Enter Taplist Username and Password to access Taplist</h3>
+    </div>
+    
+    <div class="container" id="login">
         <div class="form-group">
             <label for="username">Username</label>
             <input class="form-control" type="username" id="username" placeholder="Please Enter Username">
@@ -26,6 +29,10 @@
         </div>
 
         <button type="button" id="submit">Submit</button>
+    </div>
+
+    <div class="container" id="listings">
+
     </div>
 
     

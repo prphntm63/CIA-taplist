@@ -3,6 +3,10 @@ let sheetURL = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spre
 $(document).ready(function() {
     getAndUpdateTapData(sheetURL)
 
+    setInterval(function() {
+        getAndUpdateTapData(sheetURL)
+    }, 180000) // 2.5 min
+
 })
 
 function getAndUpdateTapData(sheetURL) {
