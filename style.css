@@ -1,3 +1,16 @@
+body {
+    /* background: url('https://digitalmarketing.blob.core.windows.net/6900/images/items/image437060.jpg') */
+}
+
+ul {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+h1.title {
+    color: black;
+    font-size: 65px;
+}
+
 h5 {
     font-size: 12px;
 }
@@ -26,6 +39,7 @@ h4 {
     justify-content: center;
     max-height: 10%;
     padding-right: 0px;
+    background: inherit;
 }
 
 .brew-tap {

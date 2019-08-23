@@ -12,13 +12,13 @@ function getAndUpdateTapData(sheetURL) {
         let htmlOut = '';
 
         tapObject.forEach(tap => {
-            if (tap.OG.length < 5) {
+            if (tap.OG && tap.OG.length < 5) {
                 tap.OG += '0'.repeat(5 - tap.OG.length)
             } else if (tap.OG.length > 5) {
                 tap.OG = tap.OG.slice(0, 5 - tap.OG.length)
             }
 
-            if (tap.FG.length < 5) {
+            if (tap.FG && tap.FG.length < 5) {
                 tap.FG += '0'.repeat(5 - tap.FG.length)
             } else if (tap.FG.length > 5) {
                 tap.FG = tap.FG.slice(0, 5 - tap.FG.length)
