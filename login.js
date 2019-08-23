@@ -19,7 +19,15 @@ $(document).ready(function() {
         $('#titleBar').html('Change Taps ...')
         $('#login').hide()
 
-        $.ajax(sheetURL).done(function(resultCSV){
+        $.ajax({
+            url: sheetURL,
+            headers: {
+                "Pragma": "no-cache",
+                "Expires": -1,
+                "Cache-Control": "no-cache"
+            }
+        
+        }).done(function(resultCSV){
 
             let tapObject = parseTapData(resultCSV)
 

@@ -1,19 +1,35 @@
-let sheetURL = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=0&single=true&output=csv"
+let sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=0&single=true&output=csv"
+
+// https://cors-anywhere.herokuapp.com/
 
 $(document).ready(function() {
     getAndUpdateTapData(sheetURL)
 
     setInterval(function() {
         getAndUpdateTapData(sheetURL)
-    }, 180000) // 2.5 min
+        // console.log('updated')
+    }, 5000) // 2.5 min
 
 })
 
 function getAndUpdateTapData(sheetURL) {
-    $.ajax(sheetURL).done(function(resultCSV){
+    $.ajaxSetup({cache: false})
+    $.ajax({
+        url: sheetURL,
+        headers: {
+            "Pragma": "no-cache",
+            "Expires": -1,
+            "Cache-Control": "no-cache"
+        }
+    
+    }).done(function(resultCSV){
+        console.log(resultCSV)
+        // $('#tapList').html('')
 
         let tapObject = parseTapData(resultCSV)
         let htmlOut = '';
+
+        
 
         tapObject.forEach(tap => {
             if (tap.OG && tap.OG.length < 5) {
@@ -80,7 +96,7 @@ function getAndUpdateTapData(sheetURL) {
             `
         })
 
-        $('#tapList').append(htmlOut)
+        $('#tapList').html(htmlOut)
         
 
     });
