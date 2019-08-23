@@ -8,7 +8,7 @@ $(document).ready(function() {
     setInterval(function() {
         getAndUpdateTapData(sheetURL)
         // console.log('updated')
-    }, 5000) // 2.5 min
+    }, 60000) // 2.5 min
 
 })
 
@@ -18,7 +18,6 @@ function getAndUpdateTapData(sheetURL) {
         url: sheetURL
     
     }).done(function(resultCSV){
-        console.log(resultCSV)
         // $('#tapList').html('')
 
         let tapObject = parseTapData(resultCSV)
