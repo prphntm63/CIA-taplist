@@ -17,7 +17,6 @@ function getAndUpdateTapData(sheetURL) {
     $.ajax({
         url: sheetURL,
         headers: {
-            "Pragma": "no-cache",
             "Expires": -1,
             "Cache-Control": "no-cache"
         }
