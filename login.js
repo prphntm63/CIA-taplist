@@ -20,11 +20,7 @@ $(document).ready(function() {
         $('#login').hide()
 
         $.ajax({
-            url: sheetURL,
-            headers: {
-                "Expires": -1,
-                "Cache-Control": "no-cache"
-            }
+            url: sheetURL
         
         }).done(function(resultCSV){
 

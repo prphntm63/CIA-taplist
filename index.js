@@ -15,11 +15,7 @@ $(document).ready(function() {
 function getAndUpdateTapData(sheetURL) {
     $.ajaxSetup({cache: false})
     $.ajax({
-        url: sheetURL,
-        headers: {
-            "Expires": -1,
-            "Cache-Control": "no-cache"
-        }
+        url: sheetURL
     
     }).done(function(resultCSV){
         console.log(resultCSV)
