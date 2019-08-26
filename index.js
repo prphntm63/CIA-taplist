@@ -1,21 +1,22 @@
-let sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=0&single=true&output=csv"
+// let sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=0&single=true&output=csv"
+let sheetScript = "https://script.google.com/macros/s/AKfycbzZDoojn0OeYx41eU9vcSJJS0q7MM4yYM4aLnVqnQ/exec"
 
 // https://cors-anywhere.herokuapp.com/
 
 $(document).ready(function() {
-    getAndUpdateTapData(sheetURL)
+    getAndUpdateTapData(sheetScript)
 
     setInterval(function() {
-        getAndUpdateTapData(sheetURL)
+        getAndUpdateTapData(sheetScript)
         // console.log('updated')
-    }, 60000) // 2.5 min
+    }, 30000) // 2.5 min
 
 })
 
-function getAndUpdateTapData(sheetURL) {
+function getAndUpdateTapData(sheetScript) {
     $.ajaxSetup({cache: false})
     $.ajax({
-        url: sheetURL
+        url: sheetScript
     
     }).done(function(resultCSV){
         // $('#tapList').html('')
@@ -26,6 +27,13 @@ function getAndUpdateTapData(sheetURL) {
         
 
         tapObject.forEach(tap => {
+
+            tap.OG = String(tap.OG)
+            tap.FG = String(tap.FG)
+            tap.ABV = String(tap.ABV)
+            tap.SRM = String(tap.SRM)
+            tap.IBU = String(tap.IBU)
+
             if (tap.OG && tap.OG.length < 5) {
                 tap.OG += '0'.repeat(5 - tap.OG.length)
             } else if (tap.OG.length > 5) {
@@ -55,7 +63,7 @@ function getAndUpdateTapData(sheetURL) {
                 <li class="list-group-item brew">
                     <div class="brew-tap">
                         <h5>TAP</h5>
-                        <h1>${tap.Tap ? tap.Tap : '-'}</h1>
+                        <h1>${tapObject.indexOf(tap) + 1}</h1>
                     </div>
                     <div class="brew-description">
                         <h4>${tap.Beer ? tap.Beer.toUpperCase() : '-'}</h4>
@@ -65,23 +73,23 @@ function getAndUpdateTapData(sheetURL) {
                     <div class="brew-stats">
                         <div>
                             <h5>ABV</h5>
-                            <h4>${tap.ABV ? tap.ABV : '-'}</h3>
+                            <h4 class="number">${tap.ABV ? tap.ABV : '-'}</h3>
                         </div>
                         <div>
                             <h5>OG</h5>
-                            <h4>${tap.OG ? tap.OG : '-'}</h3>
+                            <h4 class="number">${tap.OG ? tap.OG : '-'}</h3>
                         </div>
                         <div>
                             <h5>FG</h5>
-                            <h4>${tap.FG ? tap.FG : '-'}</h3>
+                            <h4 class="number">${tap.FG ? tap.FG : '-'}</h3>
                         </div>
                         <div>
                             <h5>IBU</h5>
-                            <h4>${tap.IBU ? tap.IBU : '-'}</h3>
+                            <h4 class="number">${tap.IBU ? tap.IBU : '-'}</h3>
                         </div>
                         <div>
                             <h5>SRM</h5>
-                            <h4>${tap.SRM ? tap.SRM : '-'}</h3>
+                            <h4 class="number">${tap.SRM ? tap.SRM : '-'}</h3>
                         </div>
                             
                     </div>
@@ -98,23 +106,27 @@ function getAndUpdateTapData(sheetURL) {
 }
 
 function parseTapData(tapCSV) {
-    let tapsArray = tapCSV.split('\n')
-    let headerCSV = tapsArray.shift()
-    let header = headerCSV.split(',')
+    // let tapsArray = tapCSV.split('\n')
+    // let headerCSV = tapsArray.shift()
+    // let header = headerCSV.split(',')
+    
+    let tapsArray = tapCSV.tapData
+    let header = tapCSV.tapData.shift()
 
     
     let taps = []
     tapsArray.forEach(tap => {
         let tapObject = {};
-        let tapFields = tap.split(',')
+        // let tapFields = tap.split(',')
         
         for (let idx=0; idx<header.length; idx++) {
-            tapObject[header[idx]] = tapFields[idx]
+            tapObject[header[idx]] = tap[idx]
             
         }
         
         taps.push(tapObject)
     })
+
 
     return taps
 

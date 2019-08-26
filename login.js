@@ -1,8 +1,8 @@
 $(document).ready(function() {
     // let editSheet = 'https://docs.google.com/spreadsheets/d/1y2t5XG_PkP_vOl66ghIpP1yk6WuhaZ0u8bPeNA-vo8E/edit#gid=0';
-    let formURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=505107533&single=true&output=csv';
-    let sheetURL = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=0&single=true&output=csv"
-
+    // let formURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=505107533&single=true&output=csv';
+    // let sheetURL = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=0&single=true&output=csv"
+    let sheetScript = "https://script.google.com/macros/s/AKfycbzZDoojn0OeYx41eU9vcSJJS0q7MM4yYM4aLnVqnQ/exec"
 
     $('#submit').on('click', goToTaps)
     
@@ -20,37 +20,34 @@ $(document).ready(function() {
         $('#login').hide()
 
         $.ajax({
-            url: sheetURL
+            url: sheetScript
         
         }).done(function(resultCSV){
 
-            let tapObject = parseTapData(resultCSV)
-
-            $.ajax(formURL).done(function(resultCSV){
-
-                let onDeck = parseTapData(resultCSV)
+            let tapData = parseTapData(resultCSV)
+            let tapObject = tapData.onTap;
+            let onDeck = tapData.onDeck;
                 
-                let htmlOut = ''
-                for (let tap=0; tap<8; tap++) {
-                    htmlOut += `<div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="${'tap'+tap}">Tap ${tap+1}</label>
-                                        </div>
-                                        <select class="form-control form-control-lg" id="${'tap'+tap}">`
-                    onDeck.forEach(brew => {
-                        htmlOut += `<option ${(tapObject[tap].Beer === brew['Beer Name']) ? 'selected' : ''}>${brew['Beer Name'] ? brew['Beer Name'] : '-'}</option>`
-                    })
+            let htmlOut = ''
+            for (let tap=0; tap<8; tap++) {
+                htmlOut += `<div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="${'tap'+tap}">Tap ${tap+1}</label>
+                                    </div>
+                                    <select class="form-control form-control-lg" id="${'tap'+tap}">`
+                onDeck.forEach(brew => {
+                    htmlOut += `<option ${(tapObject[tap].Beer === brew['Beer Name']) ? 'selected' : ''}>${brew['Beer Name'] ? brew['Beer Name'] : '-'}</option>`
+                })
 
-                    htmlOut += '</select></div></div>'
+                htmlOut += '</select></div></div>'
 
-                }
+            }
 
-                htmlOut += '<button type="button" id="changeTaps">Submit Changes</button>'
-                
-                $('#listings').html(htmlOut)
-                $('#changeTaps').on('click', pushToGoogleSheets)
-            })
+            htmlOut += '<button type="button" id="changeTaps">Submit Changes</button>'
+            
+            $('#listings').html(htmlOut)
+            $('#changeTaps').on('click', pushToGoogleSheets)
         })
 
     }
@@ -70,7 +67,7 @@ $(document).ready(function() {
         // https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
 
         $.ajax({
-            url: "https://script.google.com/macros/s/AKfycbzZDoojn0OeYx41eU9vcSJJS0q7MM4yYM4aLnVqnQ/exec",
+            url: sheetScript,
             type: "POST",
             data: data,
             contentType: "application/javascript",
@@ -91,27 +88,45 @@ $(document).ready(function() {
           }
     }
 
+
     function parseTapData(tapCSV) {
-        let tapsArray = tapCSV.split('\n')
-        let headerCSV = tapsArray.shift()
-        let header = headerCSV.split(',')
+        
+        let tapsArray = tapCSV.tapData
+        let tapsHeader = tapCSV.tapData.shift()
     
         
         let taps = []
         tapsArray.forEach(tap => {
             let tapObject = {};
-            let tapFields = tap.split(',')
             
-            for (let idx=0; idx<header.length; idx++) {
-                tapObject[header[idx]] = tapFields[idx]
+            for (let idx=0; idx<tapsHeader.length; idx++) {
+                tapObject[tapsHeader[idx]] = tap[idx]
                 
             }
             
             taps.push(tapObject)
         })
+
+        let onDeckArray = tapCSV.formData
+        let onDeckHeader = tapCSV.formData.shift()
     
-        return taps
-    
+        
+        let onDeck = []
+        onDeckArray.forEach(tap => {
+            let tapObject = {};
+            
+            for (let idx=0; idx<onDeckHeader.length; idx++) {
+                tapObject[onDeckHeader[idx]] = tap[idx]
+                
+            }
+            
+            onDeck.push(tapObject)
+        })
+
+        return {
+            "onTap":taps,
+            "onDeck":onDeck
+        }
     }
 
 })
