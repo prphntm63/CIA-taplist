@@ -23,7 +23,7 @@ function getAndUpdateTapData(sheetScript) {
 
         let tapObject = parseTapData(resultCSV)
         let htmlOut = '';
-
+        let htmlOutMobile = '';
         
 
         tapObject.forEach(tap => {
@@ -98,9 +98,42 @@ function getAndUpdateTapData(sheetScript) {
 
                 </li>
             `
+
+            htmlOutMobile += `
+                <div class="card mobile-card">
+                    <div class="card-body">
+                        <h5 class="card-title">${tapObject.indexOf(tap) + 1}. ${tap.Beer ? ( tap.Beer === "AllYourMunichAreBelongToUs" ? tap.Beer : tap.Beer.toUpperCase() ) : '-'}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Brewed By: ${tap.Brewer ? tap.Brewer.toUpperCase() : '-'}</h6>
+                        <small>${tap.Description ? tap.Description : '-'}</small>
+                        <div class="mobile-stat-container">
+                            <div class="mobile-stat">
+                                <small class="text-muted">ABV</small>
+                                <h6>${tap.ABV ? tap.ABV : '-'}</h6>
+                            </div>
+                            <div class="mobile-stat">
+                                <small class="text-muted">OG</small>
+                                <h6>${tap.OG ? tap.OG : '-'}</h6>
+                            </div>
+                            <div class="mobile-stat">
+                                <small class="text-muted">FG</small>
+                                <h6>${tap.FG ? tap.FG : '-'}</h6>
+                            </div>
+                            <div class="mobile-stat">
+                                <small class="text-muted">IBU</small>
+                                <h6>${tap.IBU ? tap.IBU : '-'}</h6>
+                            </div>
+                            <div class="mobile-stat">
+                                <small class="text-muted">SRM</small>
+                                <h6>${tap.SRM ? tap.SRM : '-'}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
         })
 
         $('#tapList').html(htmlOut)
+        $('#tapListMobile').html(htmlOutMobile)
         
 
     });

@@ -10,6 +10,10 @@ body {
     justify-content: space-between;
 }
 
+.mobile {
+    display : none;
+}
+
 ul {
     background: rgba(255, 255, 255, 0.5);
 }
@@ -117,4 +121,38 @@ h4.number {
 
 #tapList {
     height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        display : none !important;
+    }
+
+    .mobile {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .mobile-card {
+        
+    }
+
+    .mobile-card > div {
+        padding: 15px;
+    }
+
+    .mobile-stat-container {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .mobile-stat {
+        flex-grow:1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
 }
