@@ -1,5 +1,13 @@
 body {
     /* background: url('https://digitalmarketing.blob.core.windows.net/6900/images/items/image437060.jpg') */
+    height: 100vh;
+}
+
+.main {
+    height: 100%;
+    display : flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 ul {
@@ -12,16 +20,20 @@ h1.title {
     text-align: center
 }
 
+h1.tap-number {
+    font-size: 48px;
+}
+
 h5 {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 h4 {
-    font-size: 26px;
+    font-size: 32px;
 }
 
 h4.number {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .title-bar {
@@ -29,12 +41,16 @@ h4.number {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    margin: 20px auto;
+}
+
+.main-title {
+    padding: 0px 10px;
 }
 
 .title-bar > img {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     object-fit: contain;
 }
 
@@ -42,7 +58,7 @@ h4.number {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    max-height: 10%;
+    height: 12.5%;
     padding-right: 0px;
     background: inherit;
 }
@@ -84,6 +100,7 @@ h4.number {
 }
 
 .qr-codes {
+    margin: 20px auto;
     padding: 25px;
     display: flex;
     flex-direction: row;
@@ -92,4 +109,12 @@ h4.number {
 
 .qr-codes > div {
     text-align: center;
+}
+
+.tap-list {
+    flex-grow:1;
+}
+
+#tapList {
+    height: 100%;
 }

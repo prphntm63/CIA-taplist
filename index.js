@@ -47,7 +47,9 @@ function getAndUpdateTapData(sheetScript) {
             }
 
             let abvDecimal = tap.ABV.split('.')
-            if (!abvDecimal[1]) {
+            if (tap.ABV === '-' || tap.ABV === '') {
+                tap.ABV = '-'
+            } else if (!abvDecimal[1]) {
                 tap.ABV += '.0'
             } else if (abvDecimal[1].length > 1) {
                 tap.ABV = tap.ABV.slice(0, 1-abvDecimal[1].length)
@@ -63,10 +65,10 @@ function getAndUpdateTapData(sheetScript) {
                 <li class="list-group-item brew">
                     <div class="brew-tap">
                         <h5>TAP</h5>
-                        <h1>${tapObject.indexOf(tap) + 1}</h1>
+                        <h1 class="tap-number">${tapObject.indexOf(tap) + 1}</h1>
                     </div>
                     <div class="brew-description">
-                        <h4>${tap.Beer ? tap.Beer.toUpperCase() : '-'}</h4>
+                        <h4>${tap.Beer ? ( tap.Beer === "AllYourMunichAreBelongToUs" ? tap.Beer : tap.Beer.toUpperCase() ) : '-'}</h4>
                         <h5>BREWED BY: ${tap.Brewer ? tap.Brewer.toUpperCase() : '-'}</h5>
                         <p>${tap.Description ? tap.Description : '-'}</p>
                     </div>
