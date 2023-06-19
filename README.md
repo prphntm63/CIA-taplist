@@ -2,7 +2,7 @@
 
 ## About
 
-This repo sets up a [digital taplist](https://prphntm63.github.io/CIA-taplist/) using a github pages deployment for the frontend and a Google Sheet + Apps Script for the database/backend.
+This repo sets up a [digital taplist](https://prphntm63.github.io/CIA-taplist/) using a github pages deployment for the frontend and a Google Sheet + Apps Script for the database/backend. The page is laid out for 8 taps and to be displayed on a monitor in portrait orientation.
 
 ## Setup Instructions
 
