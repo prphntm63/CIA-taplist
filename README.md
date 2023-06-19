@@ -1,4 +1,10 @@
-# Quick Start
+# CIA-Taplist
+
+## About
+
+This repo sets up a [digital taplist](https://prphntm63.github.io/CIA-taplist/) using a github pages deployment for the frontend and a Google Sheet + Apps Script for the database/backend.
+
+## Setup Instructions
 
 1. Fork this repo
 
