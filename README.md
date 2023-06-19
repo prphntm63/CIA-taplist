@@ -8,16 +8,16 @@
 
 3. Copy the spreadsheet ID from the URL (i.e. `docs.google.com/spreadsheets/d/----THIS-VALUE-HERE----/`)
 
-4. In the sheet, select "App Script" from the "Extension" menu
+4. In the sheet, select `App Script` from the `Extension` menu
 
 5. Change line 31 and line 106 to reference the current spreadsheet
     - Before:  `var doc = SpreadsheetApp.openById("1y2t5XG_PkP_vOl66ghIpP1yk6WuhaZ0u8bPeNA-vo8E")`
-    - After: `var doc = SpreadsheetApp.openById("---YOUR-ID-FROM-STEP-2---")
+    - After: `var doc = SpreadsheetApp.openById("---YOUR-ID-FROM-STEP-2---")`
 
 6. Click "Run" in the menu bar
-    - When prompted for authorization, click "Review Permissions"
+    - When prompted for authorization, click `Review Permissions`
     - A Google Auth prompt will appear. Click your username
-    - Google will display a warning: "Google hasn't verified this app". Click "Advanced" then "Go to Recieve Post Data (Unsafe)"
+    - Google will display a warning: "Google hasn't verified this app". Click `Advanced` at the bottom of the prompt then `Go to Recieve Post Data (Unsafe)`
     - Click "Allow" to allow the app to change the spreadsheet on your behalf
 
 7. Click "Deploy" in the top right corner
@@ -26,7 +26,7 @@
     - "Anyone" has access
 
 8. Get the script ID
-    - Select "Project Settings" (gear icon) from the left menu
+    - Select `Project Settings` (gear icon) from the left menu
     - Copy the Script ID
   
 ### Github Repo Setup
@@ -37,8 +37,8 @@
     - Commit the changes
 
 10. Deploy to Github Pages
-    - Select "Settings" in the github repo
-    - Click "Pages" on the left menu
+    - Select `Settings` in the github repo
+    - Click `Pages` on the left menu
     - Deploy from "master" branch
     - Your site should be live at `https://YOUR_GITHUB_USERNAME.github.io/CIA-taplist/`
 
