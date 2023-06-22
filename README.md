@@ -59,3 +59,7 @@ This repo sets up a [digital taplist](https://prphntm63.github.io/CIA-taplist/) 
     - Change [this img](https://github.com/prphntm63/CIA-taplist/blob/2425d2dfd8b0cfabb73147f6c25d0d810064e3c6/index.html#L17) `src` property to update the club logo at the top of the page
     - You can also change [the AHA logo](https://github.com/prphntm63/CIA-taplist/blob/2425d2dfd8b0cfabb73147f6c25d0d810064e3c6/index.html#LL22C23-L22C23) if you desire
     - Commit your changes
+
+13. Change the password
+    - The tap edit page is 'protected' by a [low security passphrase](https://github.com/prphntm63/CIA-taplist/blob/ff6ad199493d9108665a868326927c881b5f381b/login.js#L12).
+    - Change this to whatever you want (it's currently `CIAlers`). Or, leave it blank!
