@@ -82,7 +82,7 @@ $(document).ready(function() {
           })
           .fail(function(e) {
             console.log('fail')
-            window.location.replace("index.html")
+            // window.location.replace("index.html")
           });
           
           window.receipt = function(res) {
