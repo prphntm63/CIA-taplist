@@ -76,7 +76,7 @@ $(document).ready(function() {
           })
           .done(function(res) {
             console.log('success')
-            window.location.replace("index.html")
+            // window.location.replace("index.html")
           })
           .fail(function(e) {
             console.log('fail')
