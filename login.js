@@ -77,10 +77,12 @@ $(document).ready(function() {
             crossDomain:true,
           })
           .done(function(res) {
+            window.alert('Updated!')
             console.log('success')
             // window.location.replace("index.html")
           })
           .fail(function(e) {
+            window.alert('Updated!')
             console.log('fail')
             // window.location.replace("index.html")
           });
