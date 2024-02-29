@@ -2,7 +2,8 @@ $(document).ready(function() {
     // let editSheet = 'https://docs.google.com/spreadsheets/d/1y2t5XG_PkP_vOl66ghIpP1yk6WuhaZ0u8bPeNA-vo8E/edit#gid=0';
     // let formURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=505107533&single=true&output=csv';
     // let sheetURL = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSbvLupB5h6c_Nx_gS9ogQDHt_ZkyrQnjMYi5YTs8fMknZ6dDXZGXy-X4N5_acu6jqxvW5TiOEO-Fql/pub?gid=0&single=true&output=csv"
-    let sheetScript = "https://script.google.com/macros/s/AKfycbzZDoojn0OeYx41eU9vcSJJS0q7MM4yYM4aLnVqnQ/exec"
+    // let sheetScript = "https://script.google.com/macros/s/AKfycbzZDoojn0OeYx41eU9vcSJJS0q7MM4yYM4aLnVqnQ/exec"
+    let sheetScript = 'https://script.google.com/macros/s/AKfycbxhoWjHri2KtDWyI3bAkv6fZl3i4l2en4GSf6q9qf3ST9HIiyu2nXkooyXyK_zMYc9GOg/exec'
 
     $('#submit').on('click', goToTaps)
     
